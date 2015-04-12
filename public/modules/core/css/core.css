@@ -1,0 +1,117 @@
+.content {
+	margin-top: 9em;
+}
+.undecorated-link:hover {
+	text-decoration: none;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+
+/*---- New CSS -----*/
+
+.padb5 {
+	padding-bottom: 5%;
+}
+
+.padb2 {
+	padding-bottom: 2%;
+}
+
+.navbar {
+	background: #423121;
+	border: none;
+	color: #000;
+}
+
+.jumbotron {
+    background-color: #e9dcb2;
+	color: #423121;
+}
+
+
+body {
+	background-color: #e9dcb2;
+}
+
+h1,
+h2,
+h3 {
+	font-family: 'Handlee', cursive;
+}
+
+.navlogo {
+	height: 300%;
+}
+
+.info{
+    margin: 15px 0;
+	background-color: #b48559;
+	border-style: solid;
+	border-color: #eee;
+    border-width: 4px;
+	color: #eee;
+	padding: 4%;
+}
+
+.btn-primary {
+   background: #b48559;
+   border-style: outset;
+   border-width: 4px;
+   border-color: #876443;
+   border-radius: 20px;
+   font-size: 20px;
+}
+
+.btn-primary:hover {
+   background: #e9dcb2;
+   border-style: inset;
+   border-width: 4px;
+   border-color: #876443;
+   border-radius: 20px;
+   font-size: 20px;
+   color: #111;
+}
+
+/* logged in homepage css */
+.well-lg{
+	background: rgb(180,133,89);
+	color: #fff;
+    box-shadow: .2em .2em .3em #423121;
+}
+
+.well-lg p{
+	font-size: 16px;
+	color: #fff;
+}
+
+.activityPad {
+	padding-top: 2%;
+	padding-left: 5%;
+}
+
+.right {
+	text-align: right;
+}
+
+.txtLink {
+	font-size: 16px;
+}
+
+.list-group {
+	 box-shadow: .1em .1em .2em #423121;
+}
+
+.list-group-item {
+	background-color: rgba(255,255,255,0.9);
+}
+
+
+
+

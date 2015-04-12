@@ -1,0 +1,134 @@
+<!-- view when user is logged OUT -->
+<section data-ng-controller="HomeController" data-ng-hide="authentication.user">
+	<div class="jumbotron">
+      <div class="container text-center">
+        <h1 class='titleFont'>Welcome to Java Spot</h1>
+        <p>A home for Coffee Drinkers. <strong>Like</strong>, <strong>share</strong> and <strong>sip!</strong></p>
+        <p><a class="btn btn-primary btn-lg" href="/#!/signin" role="button">Sign In</a>
+        <a class="btn btn-primary btn-lg" href="/#!/signup" role="button">Sign Up</a></p>
+      </div>
+    </div>
+	
+    <div class="container-fluid">
+      <!-- Example row of columns -->
+      <div class="row info">
+        <div class="col-md-4">
+          <h2 class='titleFont'>Like</h2>
+          <p>Like and comment on your friends recipes and spread the coffee love.</p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
+        </div>
+        <div class="col-md-4">
+          <h2 class='titleFont'>Share Recipes</h2>
+          <p>Share your recipes with other coffee enthusiasts and learn new recipes to keep your coffee game on point.</p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
+       </div>
+        <div class="col-md-4">
+          <h2 class='titleFont'>Discover</h2>
+          <p>Discover coffee places you've never been to before!</p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
+        </div>
+      </div>
+
+      <hr>
+    </div> <!-- /container -->
+</section>
+
+<!-- view when user is logged IN -->
+<section data-ng-controller="HomeController" data-ng-show="authentication.user">
+	
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class='text-center padb5 titleFont'>Recent Activity</h1>
+        </div>
+      </div>
+	
+
+	<div class="well well-lg test">
+		<div class="row">
+			<div class='col-xs-6'>
+				<img title="profile image" class="img-circle img-responsive" src="http://lorempixel.com/60/60/people">
+			</div>
+		</div>
+		<div class="row padb2">
+		  <div class='col-xs-6'>
+			<h3 class='titleFont'>Username</h3>
+		  </div>
+		  <div class='col-xs-6'>
+			<p class='titleFont right'>Timestamp</p>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class='col-xs-10 col-xs-offset-1'>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum est non turpis dapibus porttitor. Proin fermentum auctor libero non sollicitudin.</p>
+		  </div>
+		</div>
+	</div>
+	
+	<div class="well well-lg test">
+		<div class="row">
+			<div class='col-xs-6'>
+				<img title="profile image" class="img-circle img-responsive" src="http://lorempixel.com/60/60/people">
+			</div>
+		</div>
+		<div class="row padb2">
+		  <div class='col-xs-6'>
+			<h3 class='titleFont'>Username</h3>
+		  </div>
+		  <div class='col-xs-6'>
+			<p class='titleFont right'>Timestamp</p>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class='col-xs-10 col-xs-offset-1'>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum est non turpis dapibus porttitor. Proin fermentum auctor libero non sollicitudin.</p>
+		  </div>
+		</div>
+	</div>
+	
+	<div class="well well-lg test">
+		<div class="row">
+			<div class='col-xs-6'>
+				<img title="profile image" class="img-circle img-responsive" src="http://lorempixel.com/60/60/people">
+			</div>
+		</div>
+		<div class="row padb2">
+		  <div class='col-xs-6'>
+			<h3 class='titleFont'>Username</h3>
+		  </div>
+		  <div class='col-xs-6'>
+			<p class='titleFont right'>Timestamp</p>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class='col-xs-12'>
+				<img title="profile image" class="img-thumbnail center-block" src="http://lorempixel.com/200/200/food">
+		  </div>
+		</div>
+	</div>
+	
+	<div class="well well-lg test">
+		<div class="row">
+			<div class='col-xs-6'>
+				<img title="profile image" class="img-circle img-responsive" src="http://lorempixel.com/60/60/people">
+			</div>
+		</div>
+		<div class="row padb2">
+		  <div class='col-xs-6'>
+			<h3 class='titleFont'>Username</h3>
+		  </div>
+		  <div class='col-xs-6'>
+			<p class='titleFont right'>Timestamp</p>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class='col-xs-10 col-xs-offset-1'>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum est non turpis dapibus porttitor. Proin fermentum auctor libero non sollicitudin.</p>
+		  </div>
+		</div>
+	</div>
+
+      
+    </div> <!-- /container -->
+</section>
