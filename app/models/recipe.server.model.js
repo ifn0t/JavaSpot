@@ -6,15 +6,24 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
+
+// schema info
+// 
+// name 	- string
+// likes	- array
+
 /**
  * Recipe Schema
  */
 var RecipeSchema = new Schema({
-	name: {
+	name: {					// recipe name.
 		type: String,
 		default: '',
-		required: 'Please fill Recipe name',
 		trim: true
+	},
+	image: {
+		type: String,
+		default: '',
 	},
 	created: {
 		type: Date,
@@ -24,37 +33,25 @@ var RecipeSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
-	coffeeName: {
+	description: 
+	{
 		type: String,
 		default: '',
-		required: 'Please include your coffee name',
 		trim: true
-	},
-	milk: {
-		type: Boolean,
-		default: false
-	},
-	sugar: {
-		type: Number,
-		default: 0,
-		min: 0,
-		max: 10
 	},
 	honey: {
 		type: Boolean,
 		default: false
 	},
-	description: {
-		type: String,
-		default: '',
-		trim: true
-	},
 	views: {
-		type: Number
+		type: Number,
+		default: 0
 	},
-	upvotes: {
-		type: Number
-	}
+	likes: [{
+		type: Schema.ObjectId,
+		ref: 'User'
+	}]
 });
+
 
 mongoose.model('Recipe', RecipeSchema);

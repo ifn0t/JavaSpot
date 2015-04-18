@@ -1,34 +1,56 @@
 <section data-ng-controller="RecipesController" data-ng-init="findOne()">
-	<div class="page-header">
+	<div class="jumbotron text-center">
+		<!-- name -->
 		<h1 data-ng-bind="recipe.name"></h1>
 	</div>
-	<div>
-		Sugars: <h2 data-ng-bind="recipe.sugar"></h2>
-	</div>
-	<div>
-		Milk: <h2 data-ng-bind="recipe.milk"></h2>
-	</div>
-	<div>
-		Honey: <h2 data-ng-bind="recipe.honey"></h2>
-	</div>
-	<div>
-		Description: <h2 data-ng-bind="recipe.description"></h2>
-	</div>
 
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == recipe.user._id))">
-		<a class="btn btn-primary" href="/#!/recipes/{{recipe._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
+	<div class="row">
+		<div class="col-sm-8">
+			<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == recipe.user._id))">
+				<a class="btn btn-primary" href="/#!/recipes/{{recipe._id}}/edit">
+					<i class="glyphicon glyphicon-edit"></i>
+				</a>
+				<a class="btn btn-primary" data-ng-click="remove();">
+					<i class="glyphicon glyphicon-trash"></i>
+				</a>
+			</div>
+			<div>
+				<!-- output view model -->
+				<h3>Posted on:</h3>
+				<em data-ng-bind="recipe.created | date:'mediumDate'"></em>
+				by
+				<em data-ng-bind="recipe.user.displayName"></em>
+			</div>
+			<div  data-ng-show="recipe.honey" class="alert alert-warning">
+				<span class="text-center"><i class="glyphicon glyphicon-flag"></i> Conatins Honey!</span>
+			</div>
+			<div>
+			
+				<!-- likes / views -->
+				<h4>
+					Likes: <span data-ng-bind="recipe.likes.length-1"></span>
+				</h4>
+				<h5>
+					Views: <span data-ng-bind="recipe.views"></span>
+				</h5>
+			</div>
+			<div>
+			
+				<!-- image -->
+				<img ng-src="{{recipe.image}}" class="img-responsive" />
+			</div>
+			<div>
+				<h3>Description:</h3>
+				<p class="well"> <span data-ng-bind="recipe.description"></span>	</p>
+				
+			
+				<!-- buttons for likes button -->
+			
+				<button class="btn btn-success" ng-click="likeThis()" id="btn-like" data-id="{{ image.uniqueId }}" ng-show="!isLiked && authentication.user._id">Like This</button>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<h2>Sidebar</h2>
+		</div>
 	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="recipe.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="recipe.user.displayName"></span>
-		</em>
-	</small>
 </section>

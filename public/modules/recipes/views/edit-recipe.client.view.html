@@ -5,18 +5,100 @@
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
+
+                <!-- name -->
+
                 <div class="form-group">
                     <label class="control-label" for="name">Name</label>
                     <div class="controls">
                         <input type="text" data-ng-model="recipe.name" id="name" class="form-control" placeholder="Name" required>
                     </div>
                 </div>
+
+
+                <!-- photo      ???  -->
+
+                <div class="form-group">
+                    <label for="image">upload a recipe photo</label>
+                    <input type="file" name="image" data-ng-model="imageHolder.image" id="image" accept="image/*" required>
+                </div>
+
+
+                <!-- coffeeName -->
+
+<!--                 <div class="form-group">
+                    <label class="control-label" for="coffeeName">Coffee Used</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="coffeeName" id="coffeeName" class="" placeholder="brand of coffee" required>
+                    </div>
+                </div>
+ -->
+
+                <!-- milk -->
+
+                <!-- <div class="form-group">
+                    <label class="control-label" for="milk">Milk</label>
+                    <div class="controls">
+                        <input type="radio" value="true" data-ng-model="milk" id="milk" class="form-control" placeholder="milk?">
+                    </div>
+                </div> -->
+
+
+                <!-- sugar -->
+
+<!--                 <div class="form-group">
+                    <label class="control-label" for="sugar">Sugars</label> -->
+
+                    <!-- <input type="text" data-ng-model="sugar" id="sugar" class="form-control" placeholder="sugars" required> -->
+
+<!--                     <select data-ng-model="sugar" id="sugar" class="form-control">
+                        <option value="0">zero</option>
+                        <option value="1">one</option>
+                        <option value="2">two</option>
+                        <option value="3">three</option>
+                        <option value="4">four</option>
+                        <option value="5">five</option>
+                        <option value="6">six</option>
+                        <option value="7">seven</option>
+                        <option value="8">eight</option>
+                        <option value="9">nine</option>
+                    </select>
+                </div> -->
+
+
+
+                <!-- honey -->
+
+<!--                 <div class="form-group">
+                    <label class="control-label" for="honey">Honey</label>
+                    <div class="checkbox">
+                        <input type="checkbox" value="true" data-ng-model="honey" id="honey" class="controls text-center" placeholder="honey?">
+                    </div>
+                </div> -->
+
+
+                <!-- description -->
+
+                <div class="form-group">
+                    <label class="control-label" for="description">Description</label>
+                    <div class="controls">
+                        <textarea name="description" data-ng-model="description" id="description" placeholder="description" class="form-control" cols="30" rows="2"></textarea>
+                    </div>
+                </div>
+
+
+                <!-- btns -->
+
                 <div class="form-group">
                     <input type="submit" value="Update" class="btn btn-default">
                 </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>
 				</div>
+
+
+
+                <!-- End of Form -->
             </fieldset>
         </form>
     </div>

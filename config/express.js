@@ -1,7 +1,9 @@
 'use strict';
 
 /**
- * Module dependencies.
+ * Module dependencies.	
+ * 
+ *  - add `logger`
  */
 var fs = require('fs'),
 	http = require('http'),

@@ -10,6 +10,12 @@ module.exports = {
 	templateEngine: 'swig',
 	sessionSecret: 'MEAN',
 	sessionCollection: 'sessions',
+	sessionCookie: {
+		path: '/',
+		httpOnly: true,
+		secure: false,
+		maxAge: null,
+	},
 	assets: {
 		lib: {
 			css: [
