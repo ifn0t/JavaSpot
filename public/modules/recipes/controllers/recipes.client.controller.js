@@ -41,7 +41,6 @@ angular.module('recipes')
 
 				// error output.
 			}, function(errorResponse) {
-				console.log('error on client.recipe.contrllr.creat-function');
 				$scope.error = errorResponse.data.message;
 			});
 		};
@@ -169,7 +168,7 @@ angular.module('recipes')
 				for (var i = 0; i < $scope.recipe.likes.length; i++ ) {
 
 					// long console so just grabbed.
-	                console.log('Comparing ' + $scope.recipe.likes[i] + ' to ' + user._id + ' is ' + ($scope.recipe.likes[i]===user._id).toString());
+	                // console.log('Comparing ' + $scope.recipe.likes[i] + ' to ' + user._id + ' is ' + ($scope.recipe.likes[i]===user._id).toString());
 
 					// conditional
 					if ($scope.recipe.likes[i]===user._id) {
@@ -180,4 +179,102 @@ angular.module('recipes')
 				$scope.isLiked = containsValue;
 			});
 		};
+}])
+.directive('d3Bars', ['$window', '$timeout', 'd3Service', 
+	function($window, $timeout, d3Service) {
+		return {
+		restrict: 'EA',
+		scope: {},
+		link: function(scope, element, attrs) {
+			d3Service.d3().then(function(d3) {
+				// raw d3 object here.
+
+				var margin = parseInt(attrs.margin) || 20,
+			        barHeight = parseInt(attrs.barHeight) || 20,
+			        barPadding = parseInt(attrs.barPadding) || 5;
+
+
+				// select specif class?
+				var svg = d3.select(element[0])
+					.append('svg')
+					.style('width', '100%');
+
+
+				// Browser onresize event
+		          window.onresize = function() {
+		            scope.$apply();
+		          };
+
+		          // hard-code data
+		          scope.data = [
+		            {name: 'Greg', score: 20},
+		            {name: 'Ari', score: 96},
+		            {name: 'Q', score: 50},
+		            {name: 'Loser', score: 48}
+		          ];
+
+		          // Watch for resize event
+		          scope.$watch(function() {
+		            return angular.element($window)[0].innerWidth;
+		          }, function() {
+		            scope.render(scope.data);
+		          });
+
+		          scope.render = function(data) {
+		            // our custom d3 code
+
+		            svg.selectAll('*').remove();
+
+
+		            if (!data) {
+		            	return;
+		            }
+
+		            var width = d3.select(element[0]).node().offsetWidth - margin;
+		            var	height = scope.data.length * (barHeight + barPadding);
+		            // var	color = d3.color.category20();
+		            var	xScale = d3.scale.linear()
+		            		.domain([0, d3.max(data, function(d) {
+		            			return d.score;
+		            		})])
+		            		.range([0, width]);
+
+
+		          svg.attr('height', height);
+
+
+		          svg.selectAll('rect')
+		          	.data(data).enter()
+		          		.append('rect')
+		          		.attr('height', barHeight)
+		          		.attr('width', 40)
+		          		.attr('x', Math.round(margin/2))
+		          		.attr('y', function(d,i) {
+		          			return i * (barHeight + barPadding);
+		          		})
+		          		// .attr('fill', function(d) {
+		          		// 	return color(d.score);
+		          		// })
+		          		.transistion()
+		          			.duration(1000)
+		          			.attr('width', function(d) {
+		          				return xScale(d.score);
+		          			});
+
+		          };
+
+			});
+		}
+	};
 }]);
+
+
+
+
+
+
+
+
+
+
+//eod
