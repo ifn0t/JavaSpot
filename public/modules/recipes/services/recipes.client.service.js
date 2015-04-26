@@ -25,6 +25,7 @@ function tranformRecipe(data) {
     fd.append( 'espressoShots' , data.espressoShots );
     fd.append( 'syrup' , data.syrup );
     fd.append( 'dairy' , data.dairy );
+    fd.append( 'sugar' , data.sugar );
 
     // return our appended data
     return fd;

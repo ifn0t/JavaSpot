@@ -38,6 +38,11 @@ angular.module('recipes')
 				$scope.image 		= '';
 				$scope.honey		= false;	// boolean
 				$scope.description	= '';
+				$scope.espressoShots	= 0;
+				$scope.decaf		= false;
+				$scope.dairy		= '';
+				$scope.syrup		= '';
+				$scope.sugar		= 0;
 
 				// error output.
 			}, function(errorResponse) {
@@ -151,7 +156,7 @@ angular.module('recipes')
 
 			}, function() {
 				// on success log
-				console.log('recipe found!\n');
+				console.log('recipe found!\n' + $scope.recipe.name);
 
 				// grab user to make sure authenticated user
 				var user = $scope.authentication.user;
@@ -160,6 +165,69 @@ angular.module('recipes')
 
 				// log user id
 				console.log('ID ' + $scope.authentication.user._id);
+
+				// fl-oz.
+				/*var fullCup = 16,
+					emptyCup = 0,
+					sugarUnit = 0.5,
+					syrupUnit = 0.75,
+					espressoUnit = 1;
+
+					// init values.
+				var totalEspressoVol = 0,
+					totalSugarVol = 0;
+					// totalSyrupVol = 0;
+
+				// total = espresspoShots * 1 oz.
+				totalEspressoVol = $scope.recipe.espressoShots * espressoUnit;
+
+				console.log('total espresso volumn is: '+ totalExpressoVol);
+
+				// add to empty cup
+				emptyCup += totalExpressoVol;
+
+				// add syrup if not none, a flat rate of .75
+				if (!$scope.recipe.syrup === 'none' ) {
+					// logs choosen syrup name
+					console.log('we added this syrup: '+ $scope.recipe.syrup);
+					// add to empty cup
+					emptyCup += syrupUnit;
+					console.log('empty cup is at: ' + emptyCup);
+				}
+
+				if (!$scope.recipe.sugar === 0) {
+					totalSugarVol = $scope.recipe.sugar * sugarUnit;
+					console.log('total sugar volumn is: ' + totalSugarVol);
+					emptyCup += totalSugarVol;
+					console.log('empty cup is at: ' + emptyCup);
+				}
+
+				// the rest is amount of dairy product
+				var dairyVol = fullCup - emptyCup;*/
+
+
+
+
+
+
+				/*$scope.data = [
+					{
+						name: $scope.recipe.syrup,
+						score: totalSyrupVol			// should by .75 if syrup was choosen
+					},
+					{
+						name: 'Expresso Shots',
+						score: $scope.recipe.espressoShots
+					},
+					{
+						name: $scope.recipe.dairy,
+						score: totalSyrupVol
+					},
+					{
+						name: $scope.recipe.syrup,
+						score: totalSyrupVol
+					}
+				];*/
 
 				// grab amount of likes for recipe, in scope
 				$scope.likes = $scope.recipe.likes.length;
@@ -195,7 +263,7 @@ angular.module('recipes')
 
 
 				// select specif class?
-				var svg = d3.select(element[0])
+				var svg = d3.select(element[0])	// this goes through
 					.append('svg')
 					.style('width', '100%');
 
@@ -206,6 +274,8 @@ angular.module('recipes')
 		          };
 
 		          // hard-code data
+		          // 
+		          // this is where we need to grab user data...
 		          scope.data = [
 		            {name: 'Greg', score: 20},
 		            {name: 'Ari', score: 96},
@@ -251,15 +321,15 @@ angular.module('recipes')
 		          		.attr('x', Math.round(margin/2))
 		          		.attr('y', function(d,i) {
 		          			return i * (barHeight + barPadding);
-		          		})
+		          		});
 		          		// .attr('fill', function(d) {
 		          		// 	return color(d.score);
 		          		// })
-		          		.transistion()
-		          			.duration(1000)
-		          			.attr('width', function(d) {
-		          				return xScale(d.score);
-		          			});
+		          		// .transistion()
+		          		// 	.duration(1000)
+		          		// 	.attr('width', function(d) {
+		          		// 		return xScale(d.score);
+		          		// 	});
 
 		          };
 

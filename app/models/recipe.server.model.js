@@ -61,6 +61,12 @@ var RecipeSchema = new Schema({
 		type: String,
 		default: ''
 	},
+	sugar: {
+		type: Number,
+		default: 0,
+		min: 0,
+		max: 4
+	},
 	views: {
 		type: Number,
 		default: 0
