@@ -43,6 +43,24 @@ var RecipeSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
+	espressoShots: {
+		type: Number,
+		default: 1,
+		min: 1,
+		max: 4
+	},
+	decaf: {
+		type: Boolean,
+		default: false
+	},
+	syrup: {
+		type: String,
+		default: ''
+	},
+	dairy: {
+		type: String,
+		default: ''
+	},
 	views: {
 		type: Number,
 		default: 0

@@ -30,11 +30,10 @@ exports.create = function(req, res) {
 	if (req.files.image) {
 		// we have an img property in our `recipe` model
 		recipe.image = req.files.image.path.substring(7);
-		//file.path.substring(req.files.file.path.indexOf(path.sep) + path.sep.length-1);
-		console.log('success, recipe/server.create->image function:' + recipe.image);
+		// file.path.substring(req.files.file.path.indexOf(path.sep) + path.sep.length-1);
 	} else 
 		// provides default image ?
-		recipe.image = 'http://41.media.tumblr.com/97af51328e04ed8a063f513a281094d9/tumblr_nmd79rRFE31st5lhmo1_1280.jpg';
+		recipe.image = 'http://placehold.it/500&text=coffee';
 
 	recipe.save(function(err)	{
 		if (err)	{
@@ -63,10 +62,6 @@ exports.read = function(req, res) {
 	var recipe = req.recipe;
 	console.log(recipe);
 	recipe.views += 1;
-	
-
-
-
 
 	// 	2.	save updated views count back mongodb
 	recipe.save(function(err) {
@@ -119,7 +114,7 @@ likes a recipe
 
 1. check is authorized user
 
-2. seems to be checking or looping through an 
+ss2. seems to be checking or looping through an 
 array each recipe will have to see if that users_id, 
 currently authorized user that is, has already liked this
 photo or not.

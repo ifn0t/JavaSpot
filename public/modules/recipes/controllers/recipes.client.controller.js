@@ -36,8 +36,8 @@ angular.module('recipes')
 				// Clear form fields,
 				$scope.name 		= '';
 				$scope.image 		= '';
-				$scope.honey		= false;
-				$scope.description	= false;
+				$scope.honey		= false;	// boolean
+				$scope.description	= '';
 
 				// error output.
 			}, function(errorResponse) {

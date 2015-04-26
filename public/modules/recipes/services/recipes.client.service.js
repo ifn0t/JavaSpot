@@ -22,6 +22,9 @@ function tranformRecipe(data) {
     fd.append( 'name' , data.name );
     fd.append( 'description' , data.description );
     fd.append( 'honey' , data.honey );
+    fd.append( 'espressoShots' , data.espressoShots );
+    fd.append( 'syrup' , data.syrup );
+    fd.append( 'dairy' , data.dairy );
 
     // return our appended data
     return fd;
@@ -34,7 +37,11 @@ angular.module('recipes').factory('Recipes', ['$resource',
         return $resource('recipes/:recipeId', { recipeId: '@_id'
         }, {
             update: {
-                method: 'PUT'
+                method: 'PUT',
+
+                    transformRequest: tranformRecipe,
+                    headers: {'Content-Type': undefined}
+
             },
             save: {
                 method:  'POST',
@@ -45,3 +52,6 @@ angular.module('recipes').factory('Recipes', ['$resource',
         });
     }
 ]);
+
+
+

@@ -40,6 +40,17 @@
 				<img ng-src="{{recipe.image}}" class="img-responsive" />
 			</div>
 			<div>
+				<p>
+					Espresso Shots: <em data-ng-bind="recipe.espressoShots"></em>
+				</p>
+				<p>
+					Syrup: <em data-ng-bind="recipe.syrup"></em>
+				</p>
+				<p>
+					Dairy: <em data-ng-bind="recipe.dairy"></em>
+				</p>
+			</div>
+			<div>
 				<h3>Description:</h3>
 				<p class="well"> <span data-ng-bind="recipe.description"></span>	</p>
 				
@@ -54,3 +65,7 @@
 		</div>
 	</div>
 </section>
+
+
+
+
