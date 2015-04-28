@@ -8,10 +8,12 @@ angular.module('recipes')
 	'$stateParams',
 	'$http',
 	'$location',
-	'Authentication', 
+	'Authentication',
+	'Socket',
 	'Recipes',
+	
 
-	function($scope, $stateParams, $http, $location, Authentication, Recipes) {
+	function($scope, $stateParams, $http, $location, Authentication, Socket, Recipes) {
 
 		$scope.authentication = Authentication;
 
