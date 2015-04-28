@@ -131,6 +131,26 @@ angular.module('recipes')
 		// Find a list of Recipes 	--same
 		// 
 
+
+		// $scope.recipeData = [
+		// 			{
+		// 				name: 'expresso shots',
+		// 				value: 80
+		// 			},
+		// 			{
+		// 				name: 'syrup',
+		// 				value: 90
+		// 			},
+		// 			{
+		// 				name: 'sugar',
+		// 				value: 40
+		// 			},
+		// 			{
+		// 				name: 'dairy',
+		// 				value: 70
+		// 			}
+		// 		];
+
 		$scope.find = function() {
 			$scope.recipes = Recipes.query();
 		};
@@ -141,13 +161,34 @@ angular.module('recipes')
 		// 
 
 
+		
+		$scope.data = [
+			{
+				name: 'expresso shots',
+				value: 88
+			},
+			{
+				name: 'syrup',
+				value: 99
+			},
+			{
+				name: 'sugar',
+				value: 77
+			},
+			{
+				name: 'dairy',
+				value: 55
+			}
+		];
+
+
 		$scope.findOne = function() {
 			// $scope.recipe = Recipes.get({ 
 			// 	recipeId: $stateParams.recipeId
 			// });
 
 			console.log('Finding one : ' + $stateParams.recipeId);
-
+			console.log($scope.data);
 			// get our recipe and do something
 			$scope.recipe = Recipes.get({
 
@@ -167,71 +208,61 @@ angular.module('recipes')
 				console.log('ID ' + $scope.authentication.user._id);
 
 				// fl-oz.
-				/*var fullCup = 16,
-					emptyCup = 0,
-					sugarUnit = 0.5,
-					syrupUnit = 0.75,
-					espressoUnit = 1;
-
-					// init values.
-				var totalEspressoVol = 0,
-					totalSugarVol = 0;
-					// totalSyrupVol = 0;
-
-				// total = espresspoShots * 1 oz.
-				totalEspressoVol = $scope.recipe.espressoShots * espressoUnit;
-
-				console.log('total espresso volumn is: '+ totalExpressoVol);
-
-				// add to empty cup
-				emptyCup += totalExpressoVol;
-
-				// add syrup if not none, a flat rate of .75
-				if (!$scope.recipe.syrup === 'none' ) {
-					// logs choosen syrup name
-					console.log('we added this syrup: '+ $scope.recipe.syrup);
-					// add to empty cup
-					emptyCup += syrupUnit;
-					console.log('empty cup is at: ' + emptyCup);
-				}
-
-				if (!$scope.recipe.sugar === 0) {
-					totalSugarVol = $scope.recipe.sugar * sugarUnit;
-					console.log('total sugar volumn is: ' + totalSugarVol);
-					emptyCup += totalSugarVol;
-					console.log('empty cup is at: ' + emptyCup);
-				}
-
-				// the rest is amount of dairy product
-				var dairyVol = fullCup - emptyCup;*/
+				// var fullCup = 16,
+				// 	emptyCup = 0,
+				// 	sugarUnit = 0.5,
+				// 	syrupUnit = 0.75,
+				// 	espressoUnit = 1;
 
 
+				// var totalEsp = espressoUnit * $scope.recipe.espressoShots;
+				// console.log('total amt of espresso is : ' , totalEsp);
+
+
+				// var totalSyrup;
+
+				// if ($scope.recipe.syrup) {
+					// console.log('user has choosen a syrup : ', $scope.recipe.syrup);
+					// totalSyrup += 0.75;
+				// }
+
+				// var totalSugar;
+
+				// if ($scope.recipe.sugar) {
+				// 	console.log('user has choosen sugar: ' , $scope.recipe.sugar);
+				// 	totalSugar = $scope.recipe.sugar * sugarUnit;
+				// }
+
+				// all the ingredient - cup volumn should be dairy/froth.
+				// using a 16 fl-oz based cupe.
+
+				// var totalDairy = fullCup - (totalSugar + totalEsp + totalSyrup);
+
+				// $scope.recipeData = [
+				// 	{
+				// 		name: 'expresso shots',
+				// 		value: 80
+				// 	},
+				// 	{
+				// 		name: 'syrup',
+				// 		value: 90
+				// 	},
+				// 	{
+				// 		name: 'sugar',
+				// 		value: 40
+				// 	},
+				// 	{
+				// 		name: 'dairy',
+				// 		value: 70
+				// 	}
+				// ];
+				// console.log('$scope.recipeData ' +  $scope.recipeData);
 
 
 
-
-				/*$scope.data = [
-					{
-						name: $scope.recipe.syrup,
-						score: totalSyrupVol			// should by .75 if syrup was choosen
-					},
-					{
-						name: 'Expresso Shots',
-						score: $scope.recipe.espressoShots
-					},
-					{
-						name: $scope.recipe.dairy,
-						score: totalSyrupVol
-					},
-					{
-						name: $scope.recipe.syrup,
-						score: totalSyrupVol
-					}
-				];*/
 
 				// grab amount of likes for recipe, in scope
 				$scope.likes = $scope.recipe.likes.length;
-
 				// chceck something....
 				for (var i = 0; i < $scope.recipe.likes.length; i++ ) {
 
@@ -251,88 +282,112 @@ angular.module('recipes')
 .directive('d3Bars', ['$window', '$timeout', 'd3Service', 
 	function($window, $timeout, d3Service) {
 		return {
-		restrict: 'EA',
-		scope: {},
-		link: function(scope, element, attrs) {
-			d3Service.d3().then(function(d3) {
-				// raw d3 object here.
+			restrict: 'EA',
+			scope: {
+				data: '='
+			},
+			link: function(scope, elem, attrs) {
+				// load d3 then pass intot this function.
+				d3Service.d3().then(function(d3) {
+
+				// grab data from attribute.
+				var theDataToPlot= scope.data;
+				console.log('the data is \n\n\n' + theDataToPlot[0].value);
+
+				console.log('length of this array is: ' , theDataToPlot.length);
+
+				var someData = [];
+
+				console.log('someData: ' , someData);
 
 				var margin = parseInt(attrs.margin) || 20,
 			        barHeight = parseInt(attrs.barHeight) || 20,
 			        barPadding = parseInt(attrs.barPadding) || 5;
 
-
-				// select specif class?
-				var svg = d3.select(element[0])	// this goes through
+				var svg = d3.select(elem[0])	// this goes through
 					.append('svg')
 					.style('width', '100%');
 
 
+
+
+
 				// Browser onresize event
-		          window.onresize = function() {
-		            scope.$apply();
-		          };
+		          // window.onresize = function() {
+		            // scope.$apply();
+		          // };
 
 		          // hard-code data
 		          // 
 		          // this is where we need to grab user data...
-		          scope.data = [
-		            {name: 'Greg', score: 20},
-		            {name: 'Ari', score: 96},
-		            {name: 'Q', score: 50},
-		            {name: 'Loser', score: 48}
-		          ];
+		          // scope.data = [
+		          //   {
+		          //   	name: 'Greg', 
+		          //   	score: 20
+		          //   },
+		          //   {
+		          //   	name: 'Ari', 
+		          //   	score: 96
+		          //   },
+		          //   {
+		          //   	name: 'Q', 
+		          //   	score: 50
+		          //   },
+		          //   {
+		          //   	name: 'Loser', 
+		          //   	score: 48
+		          //   }
+		          // ];
 
 		          // Watch for resize event
-		          scope.$watch(function() {
-		            return angular.element($window)[0].innerWidth;
-		          }, function() {
-		            scope.render(scope.data);
-		          });
+//		          scope.$watch(function() {
+//		           return elem($window)[0].innerWidth;
+//		          }, function() {
+//		            scope.render(theDataToPlot);
+//		          });
 
-		          scope.render = function(data) {
-		            // our custom d3 code
+	        scope.render = function(data) {
+	            // our custom d3 code
+	            console.log('incoming data for d3',data);
+	            svg.selectAll('*').remove();
 
-		            svg.selectAll('*').remove();
 
+	            if (!data) {
+	            	return;
+	            }
 
-		            if (!data) {
-		            	return;
-		            }
-
-		            var width = d3.select(element[0]).node().offsetWidth - margin;
+		            var width = d3.select(elem[0]).node().offsetWidth - margin;
 		            var	height = scope.data.length * (barHeight + barPadding);
 		            // var	color = d3.color.category20();
 		            var	xScale = d3.scale.linear()
 		            		.domain([0, d3.max(data, function(d) {
-		            			return d.score;
+		            			return d;
 		            		})])
 		            		.range([0, width]);
 
 
-		          svg.attr('height', height);
+
+		    svg.attr('height', height);
 
 
-		          svg.selectAll('rect')
-		          	.data(data).enter()
-		          		.append('rect')
-		          		.attr('height', barHeight)
-		          		.attr('width', 40)
-		          		.attr('x', Math.round(margin/2))
-		          		.attr('y', function(d,i) {
-		          			return i * (barHeight + barPadding);
-		          		});
-		          		// .attr('fill', function(d) {
-		          		// 	return color(d.score);
-		          		// })
-		          		// .transistion()
-		          		// 	.duration(1000)
-		          		// 	.attr('width', function(d) {
-		          		// 		return xScale(d.score);
-		          		// 	});
+		    svg.selectAll('rect')
+		      .data(data).enter()
+		        .append('rect')
+		        .attr('height', barHeight)
+		        .attr('width', function(d) {
+		        	// return d.value;
+		        	return d.value;
+		        })
+		        .attr('x', Math.round(margin/2))
+		        .attr('y', function(d,i) {
+		          return i * (barHeight + barPadding);
+		      	});
+			};
 
-		          };
+			// test run d3
+			scope.render(theDataToPlot);	// theDataToPlot
 
+			
 			});
 		}
 	};
