@@ -131,64 +131,40 @@ angular.module('recipes')
 		// Find a list of Recipes 	--same
 		// 
 
-
-		// $scope.recipeData = [
-		// 			{
-		// 				name: 'expresso shots',
-		// 				value: 80
-		// 			},
-		// 			{
-		// 				name: 'syrup',
-		// 				value: 90
-		// 			},
-		// 			{
-		// 				name: 'sugar',
-		// 				value: 40
-		// 			},
-		// 			{
-		// 				name: 'dairy',
-		// 				value: 70
-		// 			}
-		// 		];
-
 		$scope.find = function() {
 			$scope.recipes = Recipes.query();
 		};
 
 
 		// 
-		// Find existing Recipe
+		// globally accessable data for directive.
 		// 
-
-
 		
 		$scope.data = [
 			{
 				name: 'expresso shots',
-				value: 88
-			},
-			{
-				name: 'syrup',
 				value: 99
 			},
 			{
-				name: 'sugar',
+				name: 'syrup',
 				value: 77
 			},
 			{
-				name: 'dairy',
+				name: 'sugar',
 				value: 55
+			},
+			{
+				name: 'dairy',
+				value: 33
 			}
 		];
 
 
-		$scope.findOne = function() {
-			// $scope.recipe = Recipes.get({ 
-			// 	recipeId: $stateParams.recipeId
-			// });
+		// 
+		// Find existing Recipe
+		// 
 
-			console.log('Finding one : ' + $stateParams.recipeId);
-			console.log($scope.data);
+		$scope.findOne = function() {
 			// get our recipe and do something
 			$scope.recipe = Recipes.get({
 
@@ -208,54 +184,60 @@ angular.module('recipes')
 				console.log('ID ' + $scope.authentication.user._id);
 
 				// fl-oz.
-				// var fullCup = 16,
-				// 	emptyCup = 0,
-				// 	sugarUnit = 0.5,
-				// 	syrupUnit = 0.75,
-				// 	espressoUnit = 1;
+				var fullCup = 16,
+					emptyCup = 0,
+					sugarUnit = 0.16,	// 5 gram package
+					syrupUnit = 0.75,
+					espressoUnit = 1;
 
 
-				// var totalEsp = espressoUnit * $scope.recipe.espressoShots;
-				// console.log('total amt of espresso is : ' , totalEsp);
+
+				// 
+				// find out measurements of conent for single 16 fl-oz coffee
+				// 
+				// http://www.exploratorium.edu/cooking/convert/
+
+				var recipeData = {
+					currentEspresso: $scope.recipe.espressoShots,
+					currentSyrup: $scope.recipe.syrup,
+					currentSugar: $scope.recipe.sugar,
+					currentDairy: $scope.recipe.dairy
+				};
+
+				console.log(recipeData);
 
 
-				// var totalSyrup;
+				var totalEsp = espressoUnit * $scope.recipe.espressoShots;
+				console.log('total amt of espresso is : ' , totalEsp);
+				$scope.data[0].value = ((totalEsp / fullCup) * 100 );
 
-				// if ($scope.recipe.syrup) {
-					// console.log('user has choosen a syrup : ', $scope.recipe.syrup);
-					// totalSyrup += 0.75;
-				// }
 
-				// var totalSugar;
+				var totalSyrup = 0;
+				if ($scope.recipe.syrup) {
+					console.log('user has choosen a syrup : ', $scope.recipe.syrup);
+					totalSyrup += syrupUnit;
+					console.log('totalSyrup ', totalSyrup);
+				}
+				$scope.data[1].value = ((totalSyrup / fullCup) * 100 );
 
-				// if ($scope.recipe.sugar) {
-				// 	console.log('user has choosen sugar: ' , $scope.recipe.sugar);
-				// 	totalSugar = $scope.recipe.sugar * sugarUnit;
-				// }
+
+				var totalSugar;
+				if ($scope.recipe.sugar) {
+					console.log('user has choosen sugar: ' , $scope.recipe.sugar);
+					totalSugar = ($scope.recipe.sugar * sugarUnit);
+				} else {
+					totalSugar = 0;	// if no sugar == to 0;
+					// totalSugar = 6 * sugarUnit;	- test
+				}
+				$scope.data[2].value = ((totalSugar / fullCup) * 100);
+
 
 				// all the ingredient - cup volumn should be dairy/froth.
 				// using a 16 fl-oz based cupe.
 
-				// var totalDairy = fullCup - (totalSugar + totalEsp + totalSyrup);
-
-				// $scope.recipeData = [
-				// 	{
-				// 		name: 'expresso shots',
-				// 		value: 80
-				// 	},
-				// 	{
-				// 		name: 'syrup',
-				// 		value: 90
-				// 	},
-				// 	{
-				// 		name: 'sugar',
-				// 		value: 40
-				// 	},
-				// 	{
-				// 		name: 'dairy',
-				// 		value: 70
-				// 	}
-				// ];
+				var totalDairy = fullCup - (totalSugar + totalEsp + totalSyrup);
+				console.log('totalDairy ',totalDairy);
+				$scope.data[3].value = ((totalDairy / fullCup) * 100);
 				// console.log('$scope.recipeData ' +  $scope.recipeData);
 
 
@@ -292,13 +274,8 @@ angular.module('recipes')
 
 				// grab data from attribute.
 				var theDataToPlot= scope.data;
-				console.log('the data is \n\n\n' + theDataToPlot[0].value);
-
 				console.log('length of this array is: ' , theDataToPlot.length);
 
-				var someData = [];
-
-				console.log('someData: ' , someData);
 
 				var margin = parseInt(attrs.margin) || 20,
 			        barHeight = parseInt(attrs.barHeight) || 20,
@@ -367,27 +344,25 @@ angular.module('recipes')
 
 
 
-		    svg.attr('height', height);
+				    svg.attr('height', height);
 
 
-		    svg.selectAll('rect')
-		      .data(data).enter()
-		        .append('rect')
-		        .attr('height', barHeight)
-		        .attr('width', function(d) {
-		        	// return d.value;
-		        	return d.value;
-		        })
-		        .attr('x', Math.round(margin/2))
-		        .attr('y', function(d,i) {
-		          return i * (barHeight + barPadding);
-		      	});
-			};
+				    svg.selectAll('rect')
+				      .data(data).enter()
+				        .append('rect')
+				        .attr('height', barHeight)
+				        .attr('width', function(d) {
+				        	// return d.value;
+				        	return d.value;
+				        })
+				        .attr('x', Math.round(margin/2))
+				        .attr('y', function(d,i) {
+				          return i * (barHeight + barPadding);
+				      	});
+					};
 
-			// test run d3
-			scope.render(theDataToPlot);	// theDataToPlot
-
-			
+				// test run d3
+				scope.render(theDataToPlot);	// theDataToPlot			
 			});
 		}
 	};
