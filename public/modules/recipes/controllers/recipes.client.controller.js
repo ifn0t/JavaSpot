@@ -277,44 +277,11 @@ angular.module('recipes')
 				console.log('length of this array is: ' , theDataToPlot.length);
 
 
-				var margin = parseInt(attrs.margin) || 20,
-			        barHeight = parseInt(attrs.barHeight) || 20,
-			        barPadding = parseInt(attrs.barPadding) || 5;
-
-				var svg = d3.select(elem[0])	// this goes through
-					.append('svg')
-					.style('width', '100%');
-
-
-
-
 
 				// Browser onresize event
 		          // window.onresize = function() {
 		            // scope.$apply();
 		          // };
-
-		          // hard-code data
-		          // 
-		          // this is where we need to grab user data...
-		          // scope.data = [
-		          //   {
-		          //   	name: 'Greg', 
-		          //   	score: 20
-		          //   },
-		          //   {
-		          //   	name: 'Ari', 
-		          //   	score: 96
-		          //   },
-		          //   {
-		          //   	name: 'Q', 
-		          //   	score: 50
-		          //   },
-		          //   {
-		          //   	name: 'Loser', 
-		          //   	score: 48
-		          //   }
-		          // ];
 
 		          // Watch for resize event
 //		          scope.$watch(function() {
@@ -323,43 +290,55 @@ angular.module('recipes')
 //		            scope.render(theDataToPlot);
 //		          });
 
-	        scope.render = function(data) {
-	            // our custom d3 code
-	            console.log('incoming data for d3',data);
-	            svg.selectAll('*').remove();
+		        scope.render = function(data) {
+		            // our custom d3 code
+		            if (!data) {
+		            	console.log('error, data not good.');
+		            	return;
+		            }
+
+		            console.log('incoming data for d3', data);
+
+		            var width = 360,
+			        	height = 360,
+			        	radius = Math.min(width, height) / 2,
+						color = d3.scale.category20b();
 
 
-	            if (!data) {
-	            	return;
-	            }
+			        // http://plnkr.co/edit/kgukfV?p=preview
+					var svg = d3.select(elem[0])	// this goes through
+			          .append('svg')
+			          .attr('width', width)
+			          .attr('height', height)
+			          .append('g')
+			          .attr('transform', 'translate(' + (width / 2) + 
+			            ',' + (height / 2) + ')');
 
-		            var width = d3.select(elem[0]).node().offsetWidth - margin;
-		            var	height = scope.data.length * (barHeight + barPadding);
-		            // var	color = d3.color.category20();
-		            var	xScale = d3.scale.linear()
-		            		.domain([0, d3.max(data, function(d) {
-		            			return d;
-		            		})])
-		            		.range([0, width]);
+			        // draw arc
+			        var arc = d3.svg.arc()
+			          .outerRadius(radius);
 
+			        // pie
+			        var pie = d3.layout.pie()
+			          .value(function(d) { 
+			          	return d.value; 
+			          })
+			          .sort(null);
 
+			        var path = svg.selectAll('path')
+			          .data(pie(data))
+			          .enter()
+			          .append('path')
+			          .attr('d', arc)
+			          .attr('fill', function(d, i) { 
+			            return color(d.data.name);
+			        });
 
-				    svg.attr('height', height);
-
-
-				    svg.selectAll('rect')
-				      .data(data).enter()
-				        .append('rect')
-				        .attr('height', barHeight)
-				        .attr('width', function(d) {
-				        	// return d.value;
-				        	return d.value;
-				        })
-				        .attr('x', Math.round(margin/2))
-				        .attr('y', function(d,i) {
-				          return i * (barHeight + barPadding);
-				      	});
-					};
+			        // text
+			        g.append("text")
+				      .style("text-anchor", "middle")
+				      .text(function(d) { return d.data.name; });
+				};
 
 				// test run d3
 				scope.render(theDataToPlot);	// theDataToPlot			
