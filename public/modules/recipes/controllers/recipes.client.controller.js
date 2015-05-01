@@ -29,7 +29,7 @@ angular.module('recipes')
 			// Create new Recipe object
 			var recipe = new Recipes ({
 				 name: $scope.recipeName,
-+                file: $scope.recipeFile
+                 file: $scope.recipeFile
 				//name: this.name,
 			});
 
@@ -41,7 +41,7 @@ angular.module('recipes')
 				// Clear form fields,
 				
 				$scope.recipeName = '';
-+               $scope.recipeFile = '';
+                $scope.recipeFile = '';
 				//$scope.name 		= '';
 				//$scope.image 		= '';
 				
@@ -347,6 +347,7 @@ angular.module('recipes')
                   scope.$apply(function(){
                   modelSetter(scope, element[0].files[0]);
                 });
+			  });
 
 			});
 		}
