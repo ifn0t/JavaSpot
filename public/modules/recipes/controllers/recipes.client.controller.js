@@ -335,9 +335,9 @@ angular.module('recipes')
 			        });
 
 			        // text
-			        g.append("text")
-				      .style("text-anchor", "middle")
-				      .text(function(d) { return d.data.name; });
+			        // g.append("text")
+				      // .style("text-anchor", "middle")
+				      // .text(function(d) { return d.data.name; });
 				};
 
 				// test run d3
