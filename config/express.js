@@ -168,4 +168,22 @@ module.exports = function(db) {
 	app.set('server', server);
 	// Return Express server instance
 	return app;
+	 
+	 
+/* 	var io = require('socket.io')(http); */
+	
+	app.get('/', function (req, res) {
+	res.sendFile(__dirname + '/chat.client.view.html');
+	});
+
+	//I listen on the connection event for incoming sockets, and I print out the chat messages to the console.
+	io.on('connection', function(socket){
+		socket.on('chat message', function(msg){
+			io.emit('chat message', msg);
+			console.log('message: ' + msg);
+		});
+	});
+
 };
+
+

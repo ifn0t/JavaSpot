@@ -1,6 +1,6 @@
 'use strict';
 
-// var path = require('path');
+var path = require('path');
 /**
  * Module dependencies.
  */
@@ -27,18 +27,18 @@ exports.create = function(req, res) {
 	console.log('Recipe model is: ' + recipe + '\n');
 
 
-	if (req.files.image) {
+	if (req.files.file) {
 		// we have an img property in our `recipe` model
-		recipe.image = req.files.image.path.substring(7);
-		// file.path.substring(req.files.file.path.indexOf(path.sep) + path.sep.length-1);
+		//recipe.image = req.files.image.path.substring(7);
+	    //file.path.substring(req.files.file.path.indexOf(path.sep) + path.sep.length-1);
+		recipe.image =req.files.file.path.substring(req.files.file.path.indexOf(path.sep)+path.sep.length-1);
 	} else 
 		// provides default image ?
 		recipe.image = 'http://placehold.it/500&text=coffee';
-
 	recipe.save(function(err)	{
 		if (err)	{
-			console.log('failed, server/recipe/ctrlr/create-function/: ' + errorHandler.getErrorMessage(err));
-
+			//console.log('failed, server/recipe/ctrlr/create-function/: ' + errorHandler.getErrorMessage(err));
+            console.log('detected error:',errorHandler.getErrorMessage(err));
 			return res.status(400).send({
 				message: 	errorHandler.getErrorMessage(err)
 			});
@@ -46,7 +46,9 @@ exports.create = function(req, res) {
 			var socketio = req.app.get('socketio'); // makes a socket instance
 			socketio.emit('recipe.created', recipe); // sends the socket event to all current users
 			
-			res.redirect('/#!/recipes/'+recipe._id);
+			res.json({_id:recipe._id});
+			
+			//res.redirect('/#!/recipes/'+recipe._id);
 		}
 	});
 };
@@ -80,6 +82,7 @@ exports.read = function(req, res) {
 
 			// if we get here then there was not an issue 
 			// saving back to mongodb.
+			console.log(recipe);
 			res.jsonp(recipe);	// send this data to our view in public
 		}
 	});

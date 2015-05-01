@@ -3,6 +3,7 @@
 // added http.
 // Recipes controller
 angular.module('recipes')
+
 .controller('RecipesController', [
 	'$scope', 
 	'$stateParams',
@@ -27,7 +28,9 @@ angular.module('recipes')
 
 			// Create new Recipe object
 			var recipe = new Recipes ({
-				name:  	this.name,
+				 name: $scope.recipeName,
++                file: $scope.recipeFile
+				//name: this.name,
 			});
 
 			recipe.$save(function(response) {
@@ -36,8 +39,13 @@ angular.module('recipes')
 				$location.path('recipes/' + response._id);
 
 				// Clear form fields,
-				$scope.name 		= '';
-				$scope.image 		= '';
+				
+				$scope.recipeName = '';
++               $scope.recipeFile = '';
+				//$scope.name 		= '';
+				//$scope.image 		= '';
+				
+				
 				$scope.honey		= false;	// boolean
 				$scope.description	= '';
 				$scope.espressoShots	= 0;
@@ -107,7 +115,7 @@ angular.module('recipes')
 		};
 
 		// 
-		// using d3 and custom direcive here
+		// using d3 and custom directive here
 		// 
 
 		//
@@ -247,7 +255,7 @@ angular.module('recipes')
 				}
 				// sets to true.
 				$scope.isLiked = containsValue;
-			});
+			},function(){console.log('error');});
 		};
 }])
 .directive('d3Bars', ['$window', '$timeout', 'd3Service', 
@@ -334,6 +342,11 @@ angular.module('recipes')
 		          		// 	});
 
 		          };
+				  
+				  element.bind('change', function(){
+                  scope.$apply(function(){
+                  modelSetter(scope, element[0].files[0]);
+                });
 
 			});
 		}

@@ -46,7 +46,7 @@ angular.module('recipes').factory('Recipes', ['$resource',
             },
             save: {
                 method:  'POST',
-
+					
                     transformRequest: tranformRecipe,
                     headers: {'Content-Type': undefined}
             }
