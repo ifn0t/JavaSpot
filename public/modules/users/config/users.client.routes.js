@@ -5,8 +5,8 @@ angular.module('users').config(['$stateProvider',
 	function($stateProvider) {
 		// Users state routing
 		$stateProvider.
-		state('myprofile', {
-			url: '/profile/:username',
+		state('myProfile', {
+			url: '/profile',
 			templateUrl: 'modules/users/views/profile/profile.client.view.html'
 		}).
 		state('profile', {

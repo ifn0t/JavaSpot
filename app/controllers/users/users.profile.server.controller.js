@@ -48,48 +48,6 @@ exports.update = function(req, res) {
 	}
 };
 
-/*
-* user middleware
-* */
-exports.userByUsername = function(req, res, next, username) {
-
-var user = req.user;
-  console.log('userByUsername ' + user);
-
-User.findOne({
-    username: username
-}, '_id displayName username created').exec(function(err, user) {
-    if (err) return next(err);
-    if (!user) return next(new Error('Failed to load User ' + username));
-    req.user = user;
-    res.json(user);
-    next();
-});
-};
-
-
-exports.read = function(req, res, next, username) {
-
-var user = req.user;
-  console.log('userByUsername ' + user);
-};
-
-
-/*
-* user email middleware
-* */
-exports.userByEmail = function(req, res, next, email) {
-  console.log('userByEmail ' + email);
-  User.findOne({
-    email: email
-  }).exec(function(err, user) {
-    if (err) return next(err);
-    if (!user) return next(new Error('Failed to load User with email ' + email));
-    res.json(user);
-    next();
-  });
-};
-
 /**
  * Send User
  */
