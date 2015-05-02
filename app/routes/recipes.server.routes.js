@@ -17,7 +17,7 @@ module.exports = function(app) {
 		.put(users.requiresLogin, recipes.hasAuthorization, recipes.update)
 		.delete(users.requiresLogin, recipes.hasAuthorization, recipes.delete);
 	// adds a route for likes
-	app.route('/photos/like/:photoId')
+	app.route('/recipes/like/:recipeId')
 		.put(users.requiresLogin, recipes.like);
 
 	// Finish by binding the Recipe middleware

@@ -1,78 +1,35 @@
-<section class="row" data-ng-controller="ProfileController">
-<div class="container">
-   <div class="row">
-			<div class='col-xs-6'>
-				<img title="profile image" class="img-circle img-responsive" src="http://lorempixel.com/200/200/people">
+<section class="row" data-ng-controller="SettingsController">
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Profile Information for <strong data-ng-bind="user.username"></strong>
 			</div>
-	</div>
-	<div class="row padb2">
-		  <div class='col-xs-6'>
-			<h3 class='titleFont'>Username</h3>
-		  </div>
-	</div>
-  <br>
-    <div class="row">
-        <div class="col-sm-3">
-            <!--left col-->
-            <ul class="list-group">
-                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span> 4.12.2015</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last sign in</strong></span>Yesterday</li>
-            </ul>          
-            <ul class="list-group">
-                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i>
-
-                </li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Shares</strong></span> 10</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> 13</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 7</li>
-            </ul>
-        </div>
-        <!--/col-3-->
-        <div class="col-sm-9">			
-		   <div class="well well-lg">
-				<div class="row padb2">
-				  <div class='col-xs-6'>
-					<h3 class='titleFont'>Favorite drinks</h3>
-				  </div>
+			<div class="panel-body">
+				<div class="form-group">
+					First Name: <em data-ng-bind="user.firstName"></em>
 				</div>
-				<div class="row">
-					 <div class="col-md-4">
-						<div class="thumbnail">
-							<img alt="300x200" src="http://lorempixel.com/600/400/food">
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="thumbnail">
-							<img alt="300x200" src="http://lorempixel.com/600/400/food">
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="thumbnail">
-							<img alt="300x200" src="http://lorempixel.com/600/400/food">
-						</div>                 
-					</div>
+				<div class="form-group">
+					Last Name: <em data-ng-bind="user.lastName"></em>
+				</div>
+				<div class="form-group">
+					Email: <em data-ng-bind="user.email"></em>
 				</div>
 			</div>
-			
-			<div class="well well-lg">
-				<div class="row padb2">
-				  <div class='col-xs-6'>
-					<h3 class='titleFont'>Recent comments</h3>
-				  </div>
-				</div>
-				<div class="row">
-					 <div class="col-md-4">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum est non turpis dapibus porttitor. Proin fermentum auctor libero non sollicitudin.</p>
-					</div>
-					<div class="col-md-4">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum est non turpis dapibus porttitor. Proin fermentum auctor libero non sollicitudin.</p>
-					</div>
-					<div class="col-md-4">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum est non turpis dapibus porttitor. Proin fermentum auctor libero non sollicitudin.</p>             
-					</div>
-				</div>
-			</div>              
-        </div>
-    </div>
+		</div>
+	</div>
+	<!-- posts -->
+	<div class="col-md-8">
+		<h2>User Recipes Listing</h2>
+		<ul class="list-group">
+			<li class="list-group-item">
+				<h3>Recipe Title</h3>
+			</li>
+			<li class="list-group-item">
+				<h3>Recipe Title</h3>
+			</li>
+			<li class="list-group-item">
+				<h3>Recipe Title</h3>
+			</li>
+		</ul>
+	</div>
 </section>

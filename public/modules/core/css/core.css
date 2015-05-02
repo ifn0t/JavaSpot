@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Lora|Open+Sans);
+
 .content {
 	margin-top: 9em;
 }
@@ -38,12 +40,13 @@
 
 body {
 	background-color: #e9dcb2;
+	font-family: 'Open Sans', sans-serif;
 }
 
 h1,
 h2,
 h3 {
-	font-family: 'Handlee', cursive;
+	font-family: 'Lora', serif;
 }
 
 .navlogo {
