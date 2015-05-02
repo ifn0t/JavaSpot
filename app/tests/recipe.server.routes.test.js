@@ -127,6 +127,7 @@ describe('Recipe CRUD tests', function() {
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
+			console.log('Signed in');
 				// Handle signin error
 				if (signinErr) done(signinErr);
 
@@ -138,12 +139,13 @@ describe('Recipe CRUD tests', function() {
 					.send(recipe)
 					.expect(200)
 					.end(function(recipeSaveErr, recipeSaveRes) {
+					console.log('recipe saved error', recipeSaveErr);
 						// Handle Recipe save error
 						if (recipeSaveErr) done(recipeSaveErr);
 
 						// Update Recipe name
 						recipe.name = 'WHY YOU GOTTA BE SO MEAN?';
-
+					console.log(recipeSaveRes.body);
 						// Update existing Recipe
 						agent.put('/recipes/' + recipeSaveRes.body._id)
 							.send(recipe)

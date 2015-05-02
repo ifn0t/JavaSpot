@@ -103,7 +103,18 @@
 			});
 
 			// Fixture mock form input values
-			scope.name = 'New Recipe';
+			scope.recipeName = 'New Recipe';
+
+                                                                                                                                          var formData = new FormData();
+                                                                                                                                          formData.append('name','New Recipe');
+                                                                                                                                          formData.append('file','');
+			// Set POST response
+			                            //samplePhotoPostData
+                                                                                                                                          $httpBackend.expectPOST('recipes', formData).respond(sampleRecipeResponse);
+
+			// Run controller functionality
+			scope.create();
+			$httpBackend.flush();
 
 			// Set POST response
 			$httpBackend.expectPOST('recipes', sampleRecipePostData).respond(sampleRecipeResponse);
@@ -113,7 +124,7 @@
 			$httpBackend.flush();
 
 			// Test form inputs are reset
-			expect(scope.name).toEqual('');
+			expect(scope.recipeName).toEqual('');
 
 			// Test URL redirection after the Recipe was created
 			expect($location.path()).toBe('/recipes/' + sampleRecipeResponse._id);

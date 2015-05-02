@@ -7,7 +7,7 @@
     <div class="col-sm-6 col-sm-offset-3">
         <!-- data-ng-submit="create()" \/\/\/ -->
         <!-- added multipart form data -->
-        <form class="form-horizontal"  action="recipes/" method="post" enctype="multipart/form-data" novalidate>
+        <form class="form-horizontal">
             <fieldset>
 
                 <!-- recipe name -->
@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <label class="control-label" for="name">Name</label>
                     <div class="controls">
-                        <input type="text" name="name" data-ng-model="recipeName" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" name="name" ng-model="recipeName" id="name" class="form-control" placeholder="Name" required>
                     </div>
                 </div>
 
@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label for="image">upload a recipe photo</label>
 
-                    <input type="file" name="image" data-ng-model="imageHolder.image" id="image" accept="image/*">
+                    <input type="file" name="image" file-model="recipeFile" id="image" accept="image/*">
                 </div>
 
 
@@ -100,7 +100,7 @@
 
                 <!-- submit -->
                 <div class="form-group">
-					<button class="btn btn-default" name="Submit" label="submit" ng-click="create()">Submit!</button>
+					<button class="btn btn-default" name="Submit" label="submit" ng-click="create()">Submit</button>
                     <!--<input type="submit" class="btn btn-default">-->
                 </div>
                 <!-- err -->
