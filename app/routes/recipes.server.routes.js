@@ -20,6 +20,10 @@ module.exports = function(app) {
 	app.route('/recipes/like/:recipeId')
 		.put(users.requiresLogin, recipes.like);
 
+	// app.route('/') 
+	// perhaps build function for
+	// recipes to list on user profile.,
+
 	// Finish by binding the Recipe middleware
 	app.param('recipeId', recipes.recipeByID);
 };

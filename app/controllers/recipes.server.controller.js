@@ -48,6 +48,44 @@ exports.create = function(req, res) {
 	});
 };
 
+
+/**
+ * List of Recipes
+ *
+ *		`listUserRecipes`
+ *
+ * 
+ */
+exports.listUserRecipes = function(req, res, next, user) { 
+
+	// get user 
+	var theUser = req.user;
+
+	// debug
+	console.log('list user recipes in recipes serv ctrl: ' + theUser);
+
+	// potential error here,
+	// not entirely sure what
+	// is getting called, user obj, or 
+
+
+	// call recipes from user 
+	// list on user profile page.
+	Recipe.find({ user: theUser }).sort('-created').populate('user', 'displayName').exec(function(err, recipes) {
+		if (err) {
+			console.log('List error.');
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			console.log('List successful.');
+			res.jsonp(recipes);
+		}
+	});
+};
+
+
+
 /**
  * Show the current Recipe
  *

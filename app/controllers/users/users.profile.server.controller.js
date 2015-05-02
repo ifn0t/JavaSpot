@@ -48,6 +48,65 @@ exports.update = function(req, res) {
 	}
 };
 
+
+/*
+*	user middleware find associated recipes
+*
+* 	`listUserRecipes`
+* 
+*  */
+
+// exports.listUserRecipes = function(req, res, next, username) {
+
+// 	var user = req.user;
+
+// 	var vm, objArray;
+
+// 	User.find().sort(-created).populate('recipes', 'user').exec(function(err, recipes) {
+// 		if (err) {
+// 			console.log('user recipe list error.');
+// 			return res.status(400).send({
+// 				message: errorHandler.getErrorMessage(err)
+// 			});
+// 		} else {
+// 			console.log('user recipe list success.');
+// 			res.jsonp(recipes);
+// 		}
+// 	});
+// };
+
+
+
+
+
+/*
+
+
+a reference:
+
+/**
+ * http://mongoosejs.com/docs/populate.html
+ * List of Recipes
+ */
+// exports.list = function(req, res) { 
+// 	Recipe.find().sort('-created').populate('user', 'displayName').exec(function(err, recipes) {
+// 		if (err) {
+// 			console.log('List error.');
+// 			return res.status(400).send({
+// 				message: errorHandler.getErrorMessage(err)
+// 			});
+// 		} else {
+// 			console.log('List successful.');
+// 			res.jsonp(recipes);
+// 		}
+// 	});
+//};
+
+
+
+
+
+
 /**
  * Send User
  */
