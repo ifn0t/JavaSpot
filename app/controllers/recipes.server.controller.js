@@ -1,5 +1,4 @@
 'use strict';
-
 var path = require('path');
 /**
  * Module dependencies.
@@ -13,17 +12,12 @@ var mongoose = require('mongoose'),
  * Create a Recipe
  */
 exports.create = function(req, res) {
-	
-	// debugging
-	console.log(req.body);
-	console.log(req.files);
 
 	var recipe = new Recipe(req.body);
 	recipe.user = req.user;
 
 	recipe.likes.push(req.user._id);
-
-
+	
 	console.log('Recipe model is: ' + recipe + '\n');
 
 

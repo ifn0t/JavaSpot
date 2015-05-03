@@ -29,7 +29,14 @@ angular.module('recipes')
 			// Create new Recipe object
 			var recipe = new Recipes ({
 				 name: $scope.recipeName,
-                 file: $scope.recipeFile
+                 file: $scope.recipeFile,
+				honey: $scope.honey,
+				description: $scope.description,
+				espressoShots: $scope.espressoShots,
+				decaf: $scope.decaf,
+				dairy: $scope.dairy,
+				syrup: $scope.syrup,
+				sugar: $scope.sugar
 				//name: this.name,
 			});
 

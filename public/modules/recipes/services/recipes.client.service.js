@@ -20,12 +20,12 @@ function tranformRecipe(data) {
     // to this new form data object.
     fd.append( 'file' , data.file );
     fd.append( 'name' , data.name );
-    fd.append( 'description' , data.description );
+/*     fd.append( 'description' , data.description );
     fd.append( 'honey' , data.honey );
     fd.append( 'espressoShots' , data.espressoShots );
     fd.append( 'syrup' , data.syrup );
     fd.append( 'dairy' , data.dairy );
-    fd.append( 'sugar' , data.sugar );
+    fd.append( 'sugar' , data.sugar ); */
 
     // return our appended data
     return fd;
