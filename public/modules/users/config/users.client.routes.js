@@ -5,10 +5,6 @@ angular.module('users').config(['$stateProvider',
 	function($stateProvider) {
 		// Users state routing
 		$stateProvider.
-		state('chat', {
-			url: '/chat',
-			templateUrl: 'modules/users/views/chat/chat.client.view.html'
-		}).
 		state('myprofile', {
 			url: '/profile',
 			templateUrl: 'modules/users/views/profile/profile.client.view.html'
