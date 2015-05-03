@@ -49,8 +49,13 @@
 
 <body class="ng-cloak">
 	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
+	<section>
+		<div class='col-xs-2'>
+			<div ng-show="myValue" class="ng-hide bob"> New Recipe Posted! </div>
+		</div>
+	</section>
 	<section class="content">
-	<div ng-show="myValue" class="ng-hide"> New Recipe Posted! </div>
+	<!-- <div ng-show="myValue" class="ng-hide bob"> New Recipe Posted! </div> -->
 		<section class="container">
 			{% block content %}{% endblock %}
 		</section>
