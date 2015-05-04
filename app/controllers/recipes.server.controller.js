@@ -53,36 +53,39 @@ exports.create = function(req, res) {
  * List of Recipes
  *
  *		`listUserRecipes`
- *
+ *  	- 	instead was advised to use angular to 
+ *  		to filter by user_id
  * 
  */
-exports.listUserRecipes = function(req, res, next, user) { 
+// exports.listUserRecipes = function(req, res) { 
 
-	// get user 
-	var theUser = req.user;
+// 	// get user 
+// 	// recipe model has user property
+// 	// likely needing user_id
+// 	var theUser = req.user;	// var not really used, see find() parameters in mongoose query.
 
-	// debug
-	console.log('list user recipes in recipes serv ctrl: ' + theUser);
+// 	// debug
+// 	console.log('list user recipes in recipes serv ctrl: ' + theUser);
 
-	// potential error here,
-	// not entirely sure what
-	// is getting called, user obj, or 
+// 	// potential error here,
+// 	// not entirely sure what
+// 	// is getting called, user obj, or 
 
 
-	// call recipes from user 
-	// list on user profile page.
-	Recipe.find({ user: theUser }).sort('-created').populate('user', 'displayName').exec(function(err, recipes) {
-		if (err) {
-			console.log('List error.');
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			console.log('List successful.');
-			res.jsonp(recipes);
-		}
-	});
-};
+// 	// call recipes from user 
+// 	// list on user profile page.
+// 	Recipe.find({ user: req.user._id }).sort('-created').populate('user', 'displayName').exec(function(err, recipes) {
+// 		if (err) {
+// 			console.log('List error.');
+// 			return res.status(400).send({
+// 				message: errorHandler.getErrorMessage(err)
+// 			});
+// 		} else {
+// 			console.log('List successful.');
+// 			res.jsonp(recipes);
+// 		}
+// 	});
+// };
 
 
 
@@ -257,6 +260,35 @@ exports.recipeByID = function(req, res, next, id) {
 		next();
 	});
 };
+
+
+/*
+*
+* listByUser
+* 
+*/
+
+// exports.listByUser = function(req, res) {
+// 	console.log('listByUser function called.');
+
+// 	Recipe.find({
+// 		'user': req.user._id	// this may be the issue.
+// 	})
+// 	.sort('-created')
+// 	.populate('user', 'displayName')
+// 	.exec(function(err, recipes) {
+// 		if (err) {
+// 			return res.send(400, {
+// 				message: getErrorMessage(err)
+// 			});
+// 		} else {
+// 			console.log('listByUser endpoint success');
+// 			res.jsonp(recipes);
+// 		}
+// 	});
+// };
+
+
 
 /**
  * Recipe authorization middleware

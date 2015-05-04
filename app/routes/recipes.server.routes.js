@@ -12,6 +12,9 @@ module.exports = function(app) {
 		.get(recipes.list)
 		.post(users.requiresLogin, recipes.create);
 
+	// test route.
+	// app.route('/recipes')
+
 	app.route('/recipes/:recipeId')
 		.get(recipes.read)
 		.put(users.requiresLogin, recipes.hasAuthorization, recipes.update)
@@ -23,6 +26,8 @@ module.exports = function(app) {
 	// app.route('/') 
 	// perhaps build function for
 	// recipes to list on user profile.,
+	// app.route('/profile')
+		// .get(recipes.list);	// list of recipes we want this based off user_id ????
 
 	// Finish by binding the Recipe middleware
 	app.param('recipeId', recipes.recipeByID);

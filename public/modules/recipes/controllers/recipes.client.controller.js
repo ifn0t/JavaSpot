@@ -137,7 +137,7 @@ angular.module('recipes')
 
 
 		// 
-		// globally accessable data for directive.
+		// ~"globally"~ accessable data for directive.
 		// 
 		
 		$scope.data = [

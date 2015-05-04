@@ -1,7 +1,7 @@
 'use strict';
-
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
+// user/client/controllers:settings
+angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'listRecipesService', 'Users', 'Authentication',
+	function($scope, $http, $location, listRecipesService, Users, Authentication) {
 		$scope.user = Authentication.user;
 
 		// If user is not signed in then redirect back home
@@ -37,6 +37,15 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				$scope.error = response.message;
 			});
 		};
+
+		// list recipes by a user.
+		// $scope.userRecipeList = function() {
+		// 	listRecipesService.list(function(theList, ))//work here
+		// };
+		
+		// $scope.find = function() {
+		// 	$scope.recipes = Recipes.query();
+		// };
 
 		// Update a user profile
 		$scope.updateUserProfile = function(isValid) {

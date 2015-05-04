@@ -9,4 +9,13 @@ angular.module('users').factory('Users', ['$resource',
 			}
 		});
 	}
+]).factory('listRecipesService', ['$resource',
+	function($resource) {
+		return $resource('recipes', {}, {
+			list: {
+				method: 'GET',
+				isArray: true
+			}
+		});
+	}
 ]);

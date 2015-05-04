@@ -34,101 +34,38 @@
 </section>
 
 <!-- view when user is logged IN -->
-<section data-ng-controller="HomeController" data-ng-show="authentication.user">
-	
-
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class='text-center padb5 titleFont'>Recent Activity</h1>
+<section data-ng-controller="RecipesController" data-ng-init="find()" data-ng-show="authentication.user">
+    <div class="page-header text-center">
+        <h1>Weclome to JavaSpot, <em>user.username</em></h1>
+        <h2 class="subheading">Home Page</h2>
+        <p>
+        	<em>start exploring different coffee recipes!</em>
+        </p>
+        <!-- last updated: <span>00:10:10</span> -->
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="list-group">
+                <a data-ng-repeat="recipe in recipes" data-ng-href="#!/recipes/{{recipe._id}}" class="list-group-item">
+                        <small class="list-group-item-text">
+                            Posted on
+                            <span data-ng-bind="recipe.created | date:'medium'"></span>
+                            by
+                            <span data-ng-bind="recipe.user.displayName"></span>
+                        </small>
+                        <h4 class="list-group-item-heading" data-ng-bind="recipe.name"></h4>
+                    <!-- uploaded image -->
+                    <img width="75px" height="75px" ng-src="{{recipe.image}}" alt="{{ recipe.description }}" class="img-thumbnail">
+                </a>
+            </div>
+            <div class="alert alert-warning text-center" data-ng-hide="!recipes.$resolved || recipes.length">
+                No Recipes yet, why don't you <a href="/#!/recipes/create">create one</a>?
+            </div>
         </div>
-      </div>
-	
-
-	<div class="well well-lg test">
-		<div class="row">
-			<div class='col-xs-6'>
-				<img title="profile image" class="img-circle img-responsive" src="http://lorempixel.com/60/60/people">
-			</div>
-		</div>
-		<div class="row padb2">
-		  <div class='col-xs-6'>
-			<h3 class='titleFont'>Username</h3>
-		  </div>
-		  <div class='col-xs-6'>
-			<p class='titleFont right'>Timestamp</p>
-		  </div>
-		</div>
-		<div class="row">
-		  <div class='col-xs-10 col-xs-offset-1'>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum est non turpis dapibus porttitor. Proin fermentum auctor libero non sollicitudin.</p>
-		  </div>
-		</div>
-	</div>
-	
-	<div class="well well-lg test">
-		<div class="row">
-			<div class='col-xs-6'>
-				<img title="profile image" class="img-circle img-responsive" src="http://lorempixel.com/60/60/people">
-			</div>
-		</div>
-		<div class="row padb2">
-		  <div class='col-xs-6'>
-			<h3 class='titleFont'>Username</h3>
-		  </div>
-		  <div class='col-xs-6'>
-			<p class='titleFont right'>Timestamp</p>
-		  </div>
-		</div>
-		<div class="row">
-		  <div class='col-xs-10 col-xs-offset-1'>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum est non turpis dapibus porttitor. Proin fermentum auctor libero non sollicitudin.</p>
-		  </div>
-		</div>
-	</div>
-	
-	<div class="well well-lg test">
-		<div class="row">
-			<div class='col-xs-6'>
-				<img title="profile image" class="img-circle img-responsive" src="http://lorempixel.com/60/60/people">
-			</div>
-		</div>
-		<div class="row padb2">
-		  <div class='col-xs-6'>
-			<h3 class='titleFont'>Username</h3>
-		  </div>
-		  <div class='col-xs-6'>
-			<p class='titleFont right'>Timestamp</p>
-		  </div>
-		</div>
-		<div class="row">
-		  <div class='col-xs-12'>
-				<img title="profile image" class="img-thumbnail center-block" src="http://lorempixel.com/200/200/food">
-		  </div>
-		</div>
-	</div>
-	
-	<div class="well well-lg test">
-		<div class="row">
-			<div class='col-xs-6'>
-				<img title="profile image" class="img-circle img-responsive" src="http://lorempixel.com/60/60/people">
-			</div>
-		</div>
-		<div class="row padb2">
-		  <div class='col-xs-6'>
-			<h3 class='titleFont'>Username</h3>
-		  </div>
-		  <div class='col-xs-6'>
-			<p class='titleFont right'>Timestamp</p>
-		  </div>
-		</div>
-		<div class="row">
-		  <div class='col-xs-10 col-xs-offset-1'>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum est non turpis dapibus porttitor. Proin fermentum auctor libero non sollicitudin.</p>
-		  </div>
-		</div>
-	</div>
-
-      
-    </div> <!-- /container -->
+        <!-- sidebar -->
+        <!-- <div class="col-sm-4">
+            <h3>Sidebar</h3>
+        </div> -->
+    </div>
+    <!-- /end of row -->
 </section>
